@@ -24,7 +24,11 @@ end
 
 def can_be_created_in_a_block(args = nil)
   Movie.create do |m|
-    args.each {|k, v| m.send("#{k}=", v)}
+    if args
+      args.each {|k, v| m.send("#{k}=", v)}
+    else
+      Movie.create
+    end
   end
 end
 
